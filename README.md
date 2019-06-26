@@ -30,4 +30,4 @@ alpha_p: first shape parameter of the prior of the "on" probabilities(p_hj) of b
 
 beta_p: second shape parameter of the prior of the "on" probabilities(p_hj) of binary features
 
-binit: n by H initial matrix of B, exp(B_ih) is proportional to Pr(z_i=h). If NULL (default), 
+binit: n by H initial matrix of B, exp(B_ih) is proportional to Pr(z_i=h). If NULL (default), random numbers are filled in.
