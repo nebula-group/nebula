@@ -2,7 +2,7 @@
 
 Arguments description:
 
-X: n by p matrix where n is the sample size and p is the feature size
+X: $n$ by $p$ matrix where n is the sample size and p is the feature size
 
 type: p-dimensional vector of feature types. Currently supports continuous(=0) and binary(=1)
 
@@ -10,9 +10,9 @@ A: the adjacency matrix of the graph representing the graphical structure of X
 
 H: the number of clusters to be fit
 
-eta: sparsity parameter for gamma
+eta: sparsity parameter for gamma's
 
-nu: smoothness parameter for gamma
+nu: smoothness parameter for gamma's
 
 alpha: concentration parameter for dirichlet process
 
@@ -30,4 +30,4 @@ alpha_p: first shape parameter of the prior of the "on" probabilities(p_hj) of b
 
 beta_p: second shape parameter of the prior of the "on" probabilities(p_hj) of binary features
 
-binit=NULL
+binit: n by H initial matrix of B, exp(B_ih) is proportional to Pr(z_i=h).
