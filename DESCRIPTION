@@ -1,5 +1,5 @@
 Package: PanCancer
-Title: What the Package Does (One Line, Title Case)
+Title: Variational Inference for Dirichlet Mixture Model with Incorporation of Graphical Knowledge
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "First",
@@ -8,8 +8,12 @@ Authors@R:
            email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: What the package does (one paragraph).
-License: What license it uses
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/changgee/PanCancer
 BugReports: https://github.com/changgee/PanCancer/issues
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
+Imports: 
+    stats
