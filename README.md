@@ -9,7 +9,7 @@
 
 Practically, this can be used to incorporate biological networks/pathways to inform clustering solutions. 
 
-Flexible sparsity parameters for multiple input data types allows for control over which datatypes need sparse vs rich feature selection. 
+Flexible sparsity parameters for multiple input data types allows for control over which data types need sparse vs rich feature selection. 
 
 ## Installation
 
