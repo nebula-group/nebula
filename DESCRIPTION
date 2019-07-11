@@ -3,11 +3,23 @@ Title: Variational Inference for Dirichlet Mixture Model with
     Incorporation of Graphical Knowledge
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    c(person(given = "Changgee",
+           family = "Chang",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "changgee@pennmedicine.upenn.edu"),
+      person(given = "Yize",
+           family = "Zhao",
+           role = c("aut"),
+           email = "yize.zhao@yale.edu"),
+      person(given = "Margaret",
+           family = "Hannum",
+           role = c("aut"),
+           email = "hannumm@mskcc.org"),
+      person(given = "Ronglai",
+           family = "Shen",
+           role = c("aut"),
+           email = "shenr@mskcc.org")
+           )
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 URL: https://github.com/changgee/PanCancer
