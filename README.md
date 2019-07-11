@@ -23,7 +23,7 @@ remotes::install_github("changgee/PanCancer")
 See documentation for description of parameters:
 
 ``` r
-?DMMVI
+?PanCancer::DMMVI
 ```
 
 Arguments description:
