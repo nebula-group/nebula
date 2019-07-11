@@ -17,3 +17,6 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Imports: 
     stats
+Suggests: 
+    spelling
+Language: en-US
