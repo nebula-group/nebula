@@ -4,7 +4,8 @@
 \name{PanCancer-package}
 \alias{PanCancer}
 \alias{PanCancer-package}
-\title{PanCancer: Variational Inference for Dirichlet Mixture Model with Incorporation of Graphical Knowledge}
+\title{PanCancer: Variational Inference for Dirichlet Mixture Model with
+    Incorporation of Graphical Knowledge}
 \description{
 What the package does (one paragraph).
 }

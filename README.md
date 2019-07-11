@@ -32,12 +32,14 @@ beta_p: second shape parameter of the prior of the "on" probabilities(p_hj) of b
 
 binit: n by H initial matrix of B, exp(B_ih) is proportional to Pr(z_i=h). If NULL (default), random numbers are filled in.
 
+
+
 <!-- badges: start -->
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/margarethannum/PanCancer?branch=master&svg=true)](https://ci.appveyor.com/project/margarethannum/PanCancer)
 <!-- badges: end -->
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/margarethannum/PanCancer.svg?branch=master)](https://travis-ci.org/margarethannum/PanCancer)
+[![Travis build status](https://travis-ci.org/margarethannum/PanCancer.svg?branch=master)](https://travis-ci.org/margarethannum/PanCancer) 
 <!-- badges: end -->
 
 
