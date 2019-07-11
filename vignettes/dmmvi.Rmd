@@ -1,5 +1,7 @@
 ---
-title: "dmmvi"
+title: "Tutorial - Basic usage"
+author: "Yize Zhao"
+date: "7/11/2019"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{dmmvi}

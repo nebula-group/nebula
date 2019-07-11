@@ -1,5 +1,7 @@
 ---
-title: "tuning_sparsity"
+title: "Tuning the sparsity parameter"
+author: "Yize Zhao"
+date: "7/11/2019"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{tuning_sparsity}
