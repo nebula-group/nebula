@@ -1,0 +1,21 @@
+---
+title: "tuning_sparsity"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{tuning_sparsity}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+** VIGNETTE FOR YIZE TO MODIFY on tuning the sparsity parameter**
+```{r setup}
+library(PanCancer)
+```

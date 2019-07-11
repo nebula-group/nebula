@@ -18,5 +18,9 @@ RoxygenNote: 6.1.1
 Imports: 
     stats
 Suggests: 
-    spelling
+    spelling,
+    covr,
+    knitr,
+    rmarkdown
 Language: en-US
+VignetteBuilder: knitr

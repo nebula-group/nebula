@@ -1,0 +1,21 @@
+---
+title: "dmmvi"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{dmmvi}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+** VIGNETTE FOR YIZE TO MODIFY on basic usage **
+```{r setup}
+library(PanCancer)
+```
