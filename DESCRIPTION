@@ -1,0 +1,41 @@
+Package: PanCancer
+Title: Variational Inference for Dirichlet Mixture Model with
+    Incorporation of Graphical Knowledge
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "Changgee",
+           family = "Chang",
+           role = c("aut", "cre"),
+           email = "changgee@pennmedicine.upenn.edu"),
+      person(given = "Yize",
+           family = "Zhao",
+           role = c("aut"),
+           email = "yize.zhao@yale.edu"),
+      person(given = "Margaret",
+           family = "Hannum",
+           role = c("aut"),
+           email = "hannumm@mskcc.org"),
+      person(given = "Ronglai",
+           family = "Shen",
+           role = c("aut"),
+           email = "shenr@mskcc.org")
+           )
+Description: What the package does (one paragraph).
+License: MIT + file LICENSE
+URL: https://github.com/changgee/PanCancer
+BugReports: https://github.com/changgee/PanCancer/issues
+Imports: 
+    magrittr (>= 1.5),
+    stats
+Suggests: 
+    covr (>= 3.2.1),
+    knitr (>= 1.23),
+    rmarkdown (>= 1.13),
+    spelling (>= 2.1)
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
