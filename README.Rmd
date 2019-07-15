@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The Nebula package implements Network-based latent-Dirichlet subtype analysis algorithm. 
+The Nebula package implements Network-based latent-Dirichlet subtype analysis (Nebula) algorithm. 
 
 Practically, this can be used to incorporate biological networks/pathways to inform clustering solutions.
 

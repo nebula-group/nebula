@@ -68,3 +68,4 @@ probabilities(p\_hj) of binary features
 
 binit: n by H initial matrix of B, exp(B\_ih) is proportional to
 Pr(z\_i=h). If NULL (default), random numbers are filled in.
+adding a line
