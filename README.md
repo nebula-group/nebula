@@ -5,6 +5,10 @@
 
 <!-- badges: start -->
 
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/changgee/Nebula?branch=master&svg=true)](https://ci.appveyor.com/project/changgee/Nebula)
+[![Travis build
+status](https://travis-ci.org/margarethannum/Nebula.svg?branch=master)](https://travis-ci.org/margarethannum/Nebula)
 <!-- badges: end -->
 
 The Nebula package implements Network-based latent-Dirichlet subtype
