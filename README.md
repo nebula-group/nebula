@@ -8,7 +8,7 @@
 <!-- badges: end -->
 
 The Nebula package implements Network-based latent-Dirichlet subtype
-analysis algorithm.
+analysis (Nebula) algorithm.
 
 Practically, this can be used to incorporate biological
 networks/pathways to inform clustering solutions.
@@ -68,4 +68,3 @@ probabilities(p\_hj) of binary features
 
 binit: n by H initial matrix of B, exp(B\_ih) is proportional to
 Pr(z\_i=h). If NULL (default), random numbers are filled in.
-adding a line
