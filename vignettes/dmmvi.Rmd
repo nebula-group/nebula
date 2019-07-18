@@ -19,5 +19,5 @@ knitr::opts_chunk$set(
 
 ** VIGNETTE FOR YIZE TO MODIFY on basic usage **
 ```{r setup}
-library(PanCancer)
+library(Nebula)
 ```
