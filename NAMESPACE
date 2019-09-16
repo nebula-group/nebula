@@ -2,4 +2,6 @@
 
 export("%>%")
 export(DMMVI)
+export(Nebula)
+export(NebulaCore)
 importFrom(magrittr,"%>%")
