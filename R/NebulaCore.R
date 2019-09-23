@@ -1,6 +1,6 @@
 #' NebulaCore
 #'
-#' Network based latent dirichilet subtype analysis
+#' Network based latent dirichlet subtype analysis
 #' (ver. 20190920)
 #'
 #' @param X n by p matrix where n is the sample size and p is the feature size
@@ -38,11 +38,11 @@ NebulaCore <- function(X,type,E,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_
   nadj = rep(0,p)
   tmp = c(diff(E[,1])!=0,TRUE)
   nadj[E[tmp,1]] = diff(c(0,which(tmp)))
-  Eidx = diffinv(nadj)
+  Eidx = stats::diffinv(nadj)
 
   # Initialize
   if ( is.null(binit) )
-    b = matrix(rnorm(n*H,0,0.01),n,H)
+    b = matrix(stats::rnorm(n*H,0,0.01),n,H)
   else
     b = binit
   b = b - apply(b,1,max)
@@ -66,7 +66,7 @@ NebulaCore <- function(X,type,E,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_
     # Step 1
     sEI = apply(EI,2,sum)
     f = 1 + sEI
-    tmp = diffinv(-sEI)
+    tmp = stats::diffinv(-sEI)
     g = alpha + tmp[-1] - tmp[H+1]
 
     tmp = digamma(f+g)
@@ -74,7 +74,7 @@ NebulaCore <- function(X,type,E,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_
     El1w = digamma(g) - tmp
     Elw[H] = 0
     El1w[H] = -Inf
-    cumEl1w = diffinv(El1w)
+    cumEl1w = stats::diffinv(El1w)
 
 
     # Step 2

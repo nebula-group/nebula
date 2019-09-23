@@ -4,7 +4,7 @@
 \alias{NebulaCore}
 \title{NebulaCore}
 \usage{
-NebulaCore(X, type, A, H, eta, nu, alpha, lam, alpha_sigma, beta_sigma,
+NebulaCore(X, type, E, H, eta, nu, alpha, lam, alpha_sigma, beta_sigma,
   alpha_p, beta_p, mu0, sig0, pr0, binit = NULL)
 }
 \arguments{
@@ -12,7 +12,7 @@ NebulaCore(X, type, A, H, eta, nu, alpha, lam, alpha_sigma, beta_sigma,
 
 \item{type}{p-dimensional vector of feature types. Currently supports continuous(=0) and binary(=1)}
 
-\item{A}{the adjacency matrix of the graph representing the graphical structure of X}
+\item{E}{e by 2 matrix of the graph edges representing the graphical structure of X}
 
 \item{H}{the number of clusters to be fit}
 
@@ -41,8 +41,8 @@ NebulaCore(X, type, A, H, eta, nu, alpha, lam, alpha_sigma, beta_sigma,
 \item{binit}{n by H initial matrix of B, exp(B_ih) is proportional to Pr(z_i=h). If NULL (default), random numbers are filled in.}
 }
 \description{
-Network based latent dirichilet subtype analysis
-(ver. 20190809)
+Network based latent dirichlet subtype analysis
+(ver. 20190920)
 }
 \examples{
 # ADD EXAMPLE

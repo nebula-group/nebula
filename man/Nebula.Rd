@@ -4,7 +4,7 @@
 \alias{Nebula}
 \title{Nebula}
 \usage{
-Nebula(data, modtype, adjM, H, modeta, nu, alpha, lam, alpha_sigma,
+Nebula(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma,
   beta_sigma, alpha_p, beta_p, mu0 = 0, sig0 = 20, pr0 = 0.5,
   binit = NULL)
 }
@@ -13,7 +13,7 @@ Nebula(data, modtype, adjM, H, modeta, nu, alpha, lam, alpha_sigma,
 
 \item{modtype}{M-length vector of feature types for M modalities. Currently supports continuous(=0) and binary(=1)}
 
-\item{adjM}{list of M matrices, each of which is the p_m by p_m adjancency matrix of the graph representing the graphical structure of X_m}
+\item{E}{e by 4 matrix, each tuple (row) of which represents an edge; (m1,j1,m2,j2) variable j1 of modality m1 is connected to variable j2 of modality m2}
 
 \item{H}{the number of clusters to be fit}
 
@@ -55,11 +55,12 @@ posterior probabilities
 }
 }
 \description{
-Network based latent dirichilet subtype analysis
-(ver. 20190819)
+Network based latent dirichlet subtype analysis
+(ver. 20190920)
 }
 \examples{
 # ADD EXAMPLE
+# source("NebulaCore.R") No need to source if function is also in our package
 }
 \author{
 Changgee Chang

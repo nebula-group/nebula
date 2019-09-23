@@ -1,6 +1,6 @@
 #' Nebula
 #'
-#' Network based latent dirichilet subtype analysis
+#' Network based latent dirichlet subtype analysis
 #' (ver. 20190920)
 #'
 #' @param data list of M data matrices, where each matrix is n samples by p_m features for modality M
@@ -57,7 +57,7 @@ Nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma, bet
     p[m] <- ncol(data[[m]])
   }
   P <- sum(p)
-  cump <- diffinv(p)
+  cump <- stats::diffinv(p)
 
   X <- matrix(0, n, P)
   mod <- matrix(FALSE, P, M) # modality
