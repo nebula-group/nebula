@@ -19,7 +19,6 @@
 #' @param sig0 variance of the non-selected continuous features
 #' @param pr0 'active' probability of the non-selected binary features
 #' @param binit n by H initial matrix of B, exp(B_ih) is proportional to Pr(z_i=h). If NULL (default), random numbers are filled in.
-#' @export
 #' @author Changgee Chang
 #' @examples
 #' # ADD EXAMPLE

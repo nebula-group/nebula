@@ -28,15 +28,36 @@
 #' \item clus_pr n by H matrix containing the probability that the subject i belongs to the cluster h.
 #' \item defvar_pr list of M matrices; each matrix is p_m by H containing the probability that the variable j in modality m is a defining variable for the cluster h.
 #' \item def_m list of M matrices; each matrix is p_m by H containing the mean of the variable j as a defining variable for the cluster h. (continuous variable only)
-#' \item def_lpr list of M matrices: each matrix is p_m by H containing the log probabilities of the variable j being 'active' ad a defining variable for the cluster h. (binary variable only)
+#' \item def_lpr list of M matrices: each matrix is p_m by H containing the log probabilities of the variable j being 'active' and a defining variable for the cluster h. (binary variable only)
 #' \item iter the number of iterations until the algorithm converges.
 #' }
 #' @export
 #' @author Changgee Chang
 #' @examples
-#' # ADD EXAMPLE
-#' # source("NebulaCore.R") No need to source if function is also in our package
-Nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma, beta_sigma, alpha_p, beta_p, mu0 = 0, sig0 = 20, pr0 = 0.5, binit = NULL) {
+#'
+#' \dontrun{
+#' res <- nebula(
+#'          data = colon$modal,
+#'          modtype = c(0, 1),
+#'          E = colon$network,
+#'          H = 3,
+#'          modeta = c(1, 0.2),
+#'          nu = 1,
+#'          alpha = 1,
+#'          lam = 1,
+#'          alpha_sigma = 10,
+#'          beta_sigma = 10,
+#'          alpha_p = 1,
+#'          beta_p = 1,
+#'          mu0 = 0,
+#'          sig0 = 20,
+#'          pr0 = 0.5,
+#'          binit = NULL
+#'          )
+#'  }
+#'
+nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma,
+                   beta_sigma, alpha_p, beta_p, mu0 = 0, sig0 = 20, pr0 = 0.5, binit = NULL) {
   M <- length(data)
 
   if (length(modtype) != M) {
@@ -65,7 +86,7 @@ Nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma, bet
   if (ncol(E) != 4) {
     stop("Matrix E must have 4 columns")
   }
-  E <- E[, c(2, 4)] + cump[E[, c(1, 3)]]
+  E2 <- E[, c(2, 4)] + cump[E[, c(1, 3)]]
   eta <- rep(0, P) # sparsity parameter for each variable
   for (m in 1:M)
   {
@@ -78,7 +99,7 @@ Nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma, bet
     eta[(cump[m] + 1):cump[m + 1]] <- modeta[m]
   }
 
-  out <- NebulaCore(X, type, E[, c(2, 4)], H, eta, nu, alpha, lam, alpha_sigma, beta_sigma, alpha_p, beta_p, mu0, sig0, pr0, binit)
+  out <- NebulaCore(X, type, E2, H, eta, nu, alpha, lam, alpha_sigma, beta_sigma, alpha_p, beta_p, mu0, sig0, pr0, binit)
 
   defvar <- list()
   defvar_pr <- list()
@@ -108,5 +129,5 @@ Nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma, bet
   # def_m: list of M matrices; each matrix is p_m by H containing the mean of the variable j as a defining variable for the cluster h. (continuous variable only)
   # def_lpr: list of M matrices: each matrix is p_m by H containing the log probabilities of the variable j being 'active' ad a defining variable for the cluster h. (binary variable only)
   # iter: the number of iterations until the algorithm converges.
-  list(clustering = apply(out$EI, 1, which.max), defvar = defvar, clus_pr = out$EI, defvar_pr = defvar_pr, def_m = def_m, def_lpr = def_lpr, iter = out$siter)
+  list(clustering = apply(out$EI, 1, which.max), defvar = defvar, clus_pr = out$EI, defvar_pr = defvar_pr, def_m = def_m, def_lpr = def_lpr, iter = out$iter)
 }
