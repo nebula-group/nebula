@@ -2,8 +2,8 @@
 % Please edit documentation in R/Nebula-package.R
 \docType{package}
 \name{Nebula-package}
-\alias{Nebula}
 \alias{Nebula-package}
+\alias{_PACKAGE}
 \title{Nebula: Network-based latent-Dirichlet subtype analysis (Nebula)}
 \description{
 Functions implementing the Network-based latent-Dirichlet subtype analysis (Nebula) algorithm for variational inference using Dirichlet mixture model with incorporation of graphical knowledge. Practically, this can be used to incorporate biological networks/pathways to inform clustering solutions.

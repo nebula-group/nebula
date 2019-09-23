@@ -1,0 +1,16 @@
+#' Colon adenocarcinoma data
+#'
+#' Sample feature and network information for 339 TCGA colon adenocarcinoma data
+#' (COAD) for demonstration purposes
+#'
+#' @format A list with three 2 elements
+#' \describe{
+#'    \item{modal}{List of 2 matrices containing feature information}
+#'         \item{gene_expr}{1239 log-scaled gene expression data from 339 samples}
+#'         \item{dna_alt}{binary matrix of 187 genes from 339 samples,
+#'         indicating DNA alteration (1) or no alteration (0)}
+#'    \item{network}{4-column matrix containing network information between and
+#'    within modalities.}
+#' }
+#'
+"colon"
