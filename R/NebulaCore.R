@@ -1,11 +1,11 @@
 #' NebulaCore
 #'
 #' Network based latent dirichilet subtype analysis
-#' (ver. 20190809)
+#' (ver. 20190920)
 #'
 #' @param X n by p matrix where n is the sample size and p is the feature size
 #' @param type p-dimensional vector of feature types. Currently supports continuous(=0) and binary(=1)
-#' @param A the adjacency matrix of the graph representing the graphical structure of X
+#' @param E e by 2 matrix of the graph edges representing the graphical structure of X
 #' @param H the number of clusters to be fit
 #' @param eta length p vector of sparsity parameters
 #' @param nu smoothness parameter for gamma's
@@ -24,7 +24,7 @@
 #' @examples
 #' # ADD EXAMPLE
 
-NebulaCore <- function(X,type,A,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_p,beta_p,mu0,sig0,pr0,binit=NULL)
+NebulaCore <- function(X,type,E,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_p,beta_p,mu0,sig0,pr0,binit=NULL)
 {
   n = nrow(X)
   p = ncol(X)
@@ -32,6 +32,13 @@ NebulaCore <- function(X,type,A,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_
   idx1 = which(type==1)
   p0 = length(idx0)
   p1 = length(idx1)
+
+  E = E[order(E[,1],E[,2]),]
+  e = nrow(E)
+  nadj = rep(0,p)
+  tmp = c(diff(E[,1])!=0,TRUE)
+  nadj[E[tmp,1]] = diff(c(0,which(tmp)))
+  Eidx = diffinv(nadj)
 
   # Initialize
   if ( is.null(binit) )
@@ -106,12 +113,16 @@ NebulaCore <- function(X,type,A,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_
       cbase[idx1,h] = cbase[idx1,h] - t(lbin0) %*% EI[,h] - eta[idx1]
     }
 
+    Egam[nadj==0,] = 1/(1+exp(-cbase[nadj==0,]))
     while (TRUE)
     {
       pc = c
-      for ( j in 1:p )
+      for ( j in which(nadj!=0) )
       {
-        c[j,] = cbase[j,] + nu*A[j,]%*%(2*Egam-1)
+        if ( nadj[j] == 1 )
+          c[j,] = cbase[j,] + nu*(2*Egam[E[Eidx[j+1],2],]-1)
+        else
+          c[j,] = cbase[j,] + nu*apply(2*Egam[E[(Eidx[j]+1):Eidx[j+1],2],]-1,2,sum)
         Egam[j,] = 1/(1+exp(-c[j,]))
       }
       if ( max(abs(pc-c)) < 1e-4 )

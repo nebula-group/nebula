@@ -1,11 +1,11 @@
 #' Nebula
 #'
 #' Network based latent dirichilet subtype analysis
-#' (ver. 20190819)
+#' (ver. 20190920)
 #'
 #' @param data list of M data matrices, where each matrix is n samples by p_m features for modality M
 #' @param modtype M-length vector of feature types for M modalities. Currently supports continuous(=0) and binary(=1)
-#' @param adjM list of M matrices, each of which is the p_m by p_m adjancency matrix of the graph representing the graphical structure of X_m
+#' @param E e by 4 matrix, each tuple (row) of which represents an edge; (m1,j1,m2,j2) variable j1 of modality m1 is connected to variable j2 of modality m2
 #' @param H the number of clusters to be fit
 #' @param modeta length M vector of sparsity parameters for M modalities
 #' @param nu smoothness parameter for gamma's
@@ -35,9 +35,8 @@
 #' @author Changgee Chang
 #' @examples
 #' # ADD EXAMPLE
-#source("NebulaCore.R") No need to source if function is also in our package
-
-Nebula <- function(data, modtype, adjM, H, modeta, nu, alpha, lam, alpha_sigma, beta_sigma, alpha_p, beta_p, mu0 = 0, sig0 = 20, pr0 = 0.5, binit = NULL) {
+#' # source("NebulaCore.R") No need to source if function is also in our package
+Nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma, beta_sigma, alpha_p, beta_p, mu0 = 0, sig0 = 20, pr0 = 0.5, binit = NULL) {
   M <- length(data)
 
   if (length(modtype) != M) {
@@ -63,7 +62,10 @@ Nebula <- function(data, modtype, adjM, H, modeta, nu, alpha, lam, alpha_sigma, 
   X <- matrix(0, n, P)
   mod <- matrix(FALSE, P, M) # modality
   type <- rep(0, P) # variable type
-  A <- matrix(0, P, P)
+  if (ncol(E) != 4) {
+    stop("Matrix E must have 4 columns")
+  }
+  E <- E[, c(2, 4)] + cump[E[, c(1, 3)]]
   eta <- rep(0, P) # sparsity parameter for each variable
   for (m in 1:M)
   {
@@ -73,14 +75,10 @@ Nebula <- function(data, modtype, adjM, H, modeta, nu, alpha, lam, alpha_sigma, 
       stop("invalid value for modality data type")
     }
     type[(cump[m] + 1):cump[m + 1]] <- modtype[m]
-    if (nrow(adjM[[m]]) != p[m] | ncol(adjM[[m]]) != p[m]) {
-      stop("invalid size for adjancy matrix")
-    }
-    A[(cump[m] + 1):cump[m + 1], (cump[m] + 1):cump[m + 1]] <- adjM[[m]]
     eta[(cump[m] + 1):cump[m + 1]] <- modeta[m]
   }
 
-  out <- NebulaCore(X, type, A, H, eta, nu, alpha, lam, alpha_sigma, beta_sigma, alpha_p, beta_p, mu0, sig0, pr0, binit)
+  out <- NebulaCore(X, type, E[, c(2, 4)], H, eta, nu, alpha, lam, alpha_sigma, beta_sigma, alpha_p, beta_p, mu0, sig0, pr0, binit)
 
   defvar <- list()
   defvar_pr <- list()
@@ -100,5 +98,15 @@ Nebula <- function(data, modtype, adjM, H, modeta, nu, alpha, lam, alpha_sigma, 
     def_lpr[[m]] <- matrix(out$lpr[mod[, m], ], ncol = H)
   }
 
+  #
+  # Outputs
+  #
+  # clustering: cluster assignment
+  # defvar: list of M matrices; each matrix is p_m by H indicating the variable j in modality m is a defining variable for the cluster h.
+  # clus_pr: n by H matrix containing the probability that the subject i belongs to the cluster h.
+  # defvar_pr: list of M matrices; each matrix is p_m by H containing the probability that the variable j in modality m is a defining variable for the cluster h.
+  # def_m: list of M matrices; each matrix is p_m by H containing the mean of the variable j as a defining variable for the cluster h. (continuous variable only)
+  # def_lpr: list of M matrices: each matrix is p_m by H containing the log probabilities of the variable j being 'active' ad a defining variable for the cluster h. (binary variable only)
+  # iter: the number of iterations until the algorithm converges.
   list(clustering = apply(out$EI, 1, which.max), defvar = defvar, clus_pr = out$EI, defvar_pr = defvar_pr, def_m = def_m, def_lpr = def_lpr, iter = out$siter)
 }
