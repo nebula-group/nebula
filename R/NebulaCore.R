@@ -1,11 +1,11 @@
 #' NebulaCore
 #'
-#' Network based latent dirichilet subtype analysis
-#' (ver. 20190809)
+#' Network based latent dirichlet subtype analysis
+#' (ver. 20190920)
 #'
 #' @param X n by p matrix where n is the sample size and p is the feature size
 #' @param type p-dimensional vector of feature types. Currently supports continuous(=0) and binary(=1)
-#' @param A the adjacency matrix of the graph representing the graphical structure of X
+#' @param E e by 2 matrix of the graph edges representing the graphical structure of X
 #' @param H the number of clusters to be fit
 #' @param eta length p vector of sparsity parameters
 #' @param nu smoothness parameter for gamma's
@@ -19,12 +19,11 @@
 #' @param sig0 variance of the non-selected continuous features
 #' @param pr0 'active' probability of the non-selected binary features
 #' @param binit n by H initial matrix of B, exp(B_ih) is proportional to Pr(z_i=h). If NULL (default), random numbers are filled in.
-#' @export
 #' @author Changgee Chang
 #' @examples
 #' # ADD EXAMPLE
 
-NebulaCore <- function(X,type,A,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_p,beta_p,mu0,sig0,pr0,binit=NULL)
+NebulaCore <- function(X,type,E,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_p,beta_p,mu0,sig0,pr0,binit=NULL)
 {
   n = nrow(X)
   p = ncol(X)
@@ -33,9 +32,16 @@ NebulaCore <- function(X,type,A,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_
   p0 = length(idx0)
   p1 = length(idx1)
 
+  E = E[order(E[,1],E[,2]),]
+  e = nrow(E)
+  nadj = rep(0,p)
+  tmp = c(diff(E[,1])!=0,TRUE)
+  nadj[E[tmp,1]] = diff(c(0,which(tmp)))
+  Eidx = stats::diffinv(nadj)
+
   # Initialize
   if ( is.null(binit) )
-    b = matrix(rnorm(n*H,0,0.01),n,H)
+    b = matrix(stats::rnorm(n*H,0,0.01),n,H)
   else
     b = binit
   b = b - apply(b,1,max)
@@ -59,7 +65,7 @@ NebulaCore <- function(X,type,A,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_
     # Step 1
     sEI = apply(EI,2,sum)
     f = 1 + sEI
-    tmp = diffinv(-sEI)
+    tmp = stats::diffinv(-sEI)
     g = alpha + tmp[-1] - tmp[H+1]
 
     tmp = digamma(f+g)
@@ -67,7 +73,7 @@ NebulaCore <- function(X,type,A,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_
     El1w = digamma(g) - tmp
     Elw[H] = 0
     El1w[H] = -Inf
-    cumEl1w = diffinv(El1w)
+    cumEl1w = stats::diffinv(El1w)
 
 
     # Step 2
@@ -106,12 +112,16 @@ NebulaCore <- function(X,type,A,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_
       cbase[idx1,h] = cbase[idx1,h] - t(lbin0) %*% EI[,h] - eta[idx1]
     }
 
+    Egam[nadj==0,] = 1/(1+exp(-cbase[nadj==0,]))
     while (TRUE)
     {
       pc = c
-      for ( j in 1:p )
+      for ( j in which(nadj!=0) )
       {
-        c[j,] = cbase[j,] + nu*A[j,]%*%(2*Egam-1)
+        if ( nadj[j] == 1 )
+          c[j,] = cbase[j,] + nu*(2*Egam[E[Eidx[j+1],2],]-1)
+        else
+          c[j,] = cbase[j,] + nu*apply(2*Egam[E[(Eidx[j]+1):Eidx[j+1],2],]-1,2,sum)
         Egam[j,] = 1/(1+exp(-c[j,]))
       }
       if ( max(abs(pc-c)) < 1e-4 )

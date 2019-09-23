@@ -23,6 +23,8 @@ Description: Functions implementing the Network-based latent-Dirichlet subtype a
 License: MIT + file LICENSE
 URL: https://github.com/changgee/Nebula
 BugReports: https://github.com/changgee/PanCancer/issues
+Depends: 
+    R (>= 2.10)
 Imports: 
     magrittr (>= 1.5),
     stats

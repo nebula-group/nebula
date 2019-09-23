@@ -1,0 +1,155 @@
+---
+title: "Tutorial - Basic usage"
+author: "Margaret L. Hannum"
+date: "Last Updated: 9/23/2019"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tutorial: Basic usage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Introduction
+
+This vignette will walk a reader through the `Nebula()` function. 
+
+## Setup
+
+Before going through the tutorial, install {Nebula}. 
+
+```{r, include = FALSE}
+library(Nebula)
+
+```
+
+```{r, eval = FALSE}
+remotes::install_github("changgee/Nebula")
+
+library(Nebula)
+
+```
+
+## Basic Usage
+
+We'll be using the `colon` data set throughout this example. 
+This set contains data from `nrow(colon$modal$gene_expr)` patients with 
+colon adenocarcinoma (COAD) from the TCGA with available mRNA gene expression and DNA alteration data. 
+
+  modal 
+     gene_expr  numeric matrix of log-scaled, imputed gene expression values
+     dna_alt    binary matrix indicating DNA alteration 
+  network  numeric matrix representing network connections between and within
+           data modalities
+
+
+In this dataset there are 1239 gene expression features and 187 DNA alteration features (encompassing copy number alteration, DNA mutation, and DNA methylation data).           
+```{r, message = FALSE}
+
+head(colon$modal$gene_expr[1:5,1:5])
+
+head(colon$modal$dna_alt[1:5, 1:5])
+```
+
+
+We also include network information in the colon dataset, indicating network edges both within and between modalities. 
+
+For example, below we can see the 10th gene in the first modality has a network connection to the 8th gene in the first modality (gene expression). 
+```{r, message = FALSE}
+
+head(colon$network)
+
+```
+
+
+Now perform network-driven subtype discovery on the example colon data. 
+
+_We recommend setting a seed for reproducible results, since there is a stochastic nature to the Bayesian subtype assignments._
+
+```{r}
+# set seed for reproducibility
+set.seed(123)
+
+t1 <- Sys.time()
+res <- nebula(
+  data = colon$modal, 
+  modtype = c(0, 1), 
+  E = colon$network,
+  H = 3, 
+  modeta = c(1, 0.2),
+  nu = 1,
+  alpha = 1,
+  lam = 1, 
+  alpha_sigma = 10,
+  beta_sigma = 10,
+  alpha_p = 1, 
+  beta_p = 1, 
+  mu0 = 0, 
+  sig0 = 20,
+  pr0 = 0.5,
+  binit = NULL
+)
+t2 <- Sys.time()
+
+t2-t1
+
+```
+
+Now we can examine the output. 
+
+There are subtype assignments for all samples:
+```{r}
+head(res$clustering)
+
+summary(as.factor(res$clustering))
+```
+
+You may also access probabilities that each sample is assigned to each subtype. Above, we saw the first sample was assigned to subtype "1". Below, we see that the probability of the first sample sample being assigned to subtype "1" was close to one (after rounding). 
+
+```{r}
+
+round(head(res$clus_pr), 3)
+```
+
+Finally, you may also access feature selection information in the output. For each feature in each mode, there is a TRUE/FALSE value for whether the feature is a defining variable in each cluster (in the `res$defvar` element), as well as the probability of that feature being a defining variable for the cluster (`res$defvar_pr`)
+
+
+
+
+
+<!-- ```{r} -->
+<!-- set.seed(1234) -->
+<!-- res2 <- nebula( -->
+<!--   data = colon$modal,  -->
+<!--   modtype = c(0, 1),  -->
+<!--   E = colon$network, -->
+<!--   H = 3,  -->
+<!--   modeta = c(1, 0.2), -->
+<!--   nu = 1, -->
+<!--   alpha = 1, -->
+<!--   lam = 1,  -->
+<!--   alpha_sigma = 10, -->
+<!--   beta_sigma = 10, -->
+<!--   alpha_p = 1,  -->
+<!--   beta_p = 1,  -->
+<!--   mu0 = 0,  -->
+<!--   sig0 = 20, -->
+<!--   pr0 = 0.5, -->
+<!--   binit = NULL -->
+<!-- ) -->
+
+<!-- table(res$clustering, res2$clustering) -->
+
+<!-- ``` -->
+
+
+
+
+
