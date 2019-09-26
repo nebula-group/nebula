@@ -11,13 +11,13 @@
 #' @param nu smoothness parameter for gamma's
 #' @param alpha concentration parameter for dirichlet process
 #' @param lam shrinkage parameter for means of selected continuous features
-#' @param alpha_sigma shape parameter of the prior of residual variance(sigma^2)
-#' @param beta_sigma rate parameter of the prior of residual variance(sigma^2)
-#' @param alpha_p first shape parameter of the prior of the 'active' probabilities(p_hj) of binary features
-#' @param beta_p second shape parameter of the prior of the 'active' probabilities(p_hj) of binary features
-#' @param mu0 mean of the non-selected continuous features
-#' @param sig0 variance of the non-selected continuous features
-#' @param pr0 'active' probability of the non-selected binary features
+#' @param alpha_sigma shape parameter of the prior of residual variance(sigma^2) (default = 1, i.e. noninformative)
+#' @param beta_sigma rate parameter of the prior of residual variance(sigma^2) (default = 1, i.e. noninformative)
+#' @param alpha_p first shape parameter of the prior of the 'active' probabilities(p_hj) of binary features (default = 1, i.e. noninformative)
+#' @param beta_p second shape parameter of the prior of the 'active' probabilities(p_hj) of binary features (default = 1, i.e. noninformative)
+#' @param mu0 mean of the non-selected continuous features (default is 0)
+#' @param sig0 variance of the non-selected continuous features (default is 20)
+#' @param pr0 'active' probability of the non-selected binary features (default is 0.5)
 #' @param binit n by H initial matrix of B, exp(B_ih) is proportional to Pr(z_i=h). If NULL (default), random numbers are filled in.
 #'
 #' @return A list containing clustering assignments, variable selection, and
@@ -49,15 +49,11 @@
 #'          beta_sigma = 10,
 #'          alpha_p = 1,
 #'          beta_p = 1,
-#'          mu0 = 0,
-#'          sig0 = 20,
-#'          pr0 = 0.5,
-#'          binit = NULL
 #'          )
 #'  }
 #'
-nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma,
-                   beta_sigma, alpha_p, beta_p, mu0 = 0, sig0 = 20, pr0 = 0.5, binit = NULL) {
+nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
+                   beta_sigma = 1, alpha_p = 1, beta_p = 1, mu0 = 0, sig0 = 20, pr0 = 0.5, binit = NULL) {
   M <- length(data)
 
   if (length(modtype) != M) {
