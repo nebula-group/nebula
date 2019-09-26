@@ -4,9 +4,9 @@
 \alias{nebula}
 \title{Nebula}
 \usage{
-nebula(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma,
-  beta_sigma, alpha_p, beta_p, mu0 = 0, sig0 = 20, pr0 = 0.5,
-  binit = NULL)
+nebula(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
+  beta_sigma = 1, alpha_p = 1, beta_p = 1, mu0 = 0, sig0 = 20,
+  pr0 = 0.5, binit = NULL)
 }
 \arguments{
 \item{data}{list of M data matrices, where each matrix is n samples by p_m features for modality M}
@@ -25,19 +25,19 @@ nebula(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma,
 
 \item{lam}{shrinkage parameter for means of selected continuous features}
 
-\item{alpha_sigma}{shape parameter of the prior of residual variance(sigma^2)}
+\item{alpha_sigma}{shape parameter of the prior of residual variance(sigma^2) (default = 1, i.e. noninformative)}
 
-\item{beta_sigma}{rate parameter of the prior of residual variance(sigma^2)}
+\item{beta_sigma}{rate parameter of the prior of residual variance(sigma^2) (default = 1, i.e. noninformative)}
 
-\item{alpha_p}{first shape parameter of the prior of the 'active' probabilities(p_hj) of binary features}
+\item{alpha_p}{first shape parameter of the prior of the 'active' probabilities(p_hj) of binary features (default = 1, i.e. noninformative)}
 
-\item{beta_p}{second shape parameter of the prior of the 'active' probabilities(p_hj) of binary features}
+\item{beta_p}{second shape parameter of the prior of the 'active' probabilities(p_hj) of binary features (default = 1, i.e. noninformative)}
 
-\item{mu0}{mean of the non-selected continuous features}
+\item{mu0}{mean of the non-selected continuous features (default is 0)}
 
-\item{sig0}{variance of the non-selected continuous features}
+\item{sig0}{variance of the non-selected continuous features (default is 20)}
 
-\item{pr0}{'active' probability of the non-selected binary features}
+\item{pr0}{'active' probability of the non-selected binary features (default is 0.5)}
 
 \item{binit}{n by H initial matrix of B, exp(B_ih) is proportional to Pr(z_i=h). If NULL (default), random numbers are filled in.}
 }
@@ -74,10 +74,6 @@ res <- nebula(
          beta_sigma = 10,
          alpha_p = 1,
          beta_p = 1,
-         mu0 = 0,
-         sig0 = 20,
-         pr0 = 0.5,
-         binit = NULL
          )
  }
 
