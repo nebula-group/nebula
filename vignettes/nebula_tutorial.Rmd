@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-This vignette will walk a reader through the `Nebula()` function. 
+This vignette will walk a reader through the `nebula()` function. 
 
 ## Setup
 
@@ -31,7 +31,7 @@ library(Nebula)
 ```
 
 ```{r, eval = FALSE}
-remotes::install_github("changgee/Nebula")
+remotes::install_github("changgee/Nebula", build_vignettes = TRUE)
 
 library(Nebula)
 
@@ -43,13 +43,6 @@ We'll be using the `colon` data set throughout this example.
 This set contains data from `nrow(colon$modal$gene_expr)` patients with 
 colon adenocarcinoma (COAD) from the TCGA with available mRNA gene expression and DNA alteration data. 
 
-  modal 
-     gene_expr  numeric matrix of log-scaled, imputed gene expression values
-     dna_alt    binary matrix indicating DNA alteration 
-  network  numeric matrix representing network connections between and within
-           data modalities
-
-
 In this dataset there are 1239 gene expression features and 187 DNA alteration features (encompassing copy number alteration, DNA mutation, and DNA methylation data).           
 ```{r, message = FALSE}
 
@@ -59,9 +52,9 @@ head(colon$modal$dna_alt[1:5, 1:5])
 ```
 
 
-We also include network information in the colon dataset, indicating network edges both within and between modalities. 
+We also include network information in the `colon` dataset, which indicates network edges both within and between modalities. 
 
-For example, below we can see the 10th gene in the first modality has a network connection to the 8th gene in the first modality (gene expression). 
+For example, below we can see the 10th gene in the first modality has a network connection to the 8th gene in the first modality. 
 ```{r, message = FALSE}
 
 head(colon$network)
@@ -90,11 +83,7 @@ res <- nebula(
   alpha_sigma = 10,
   beta_sigma = 10,
   alpha_p = 1, 
-  beta_p = 1, 
-  mu0 = 0, 
-  sig0 = 20,
-  pr0 = 0.5,
-  binit = NULL
+  beta_p = 1
 )
 t2 <- Sys.time()
 
