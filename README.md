@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Nebula
+# nebula
 
 <!-- badges: start -->
 
@@ -23,15 +23,15 @@ control over which data types need sparse vs rich feature selection.
 ## Installation
 
 You can install the development version from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/nebula-group/nebula) with:
 
 ``` r
 # install.packages("remotes")
 
-remotes::install_github("changgee/Nebula", build_vignettes = TRUE)
+remotes::install_github("nebula-group/nebula", build_vignettes = TRUE)
 
-library(Nebula)
+library(nebula)
 ```
 
-Learn more in `vignette("nebula_tutorial", package = "Nebula")` or
+Learn more in `vignette("nebula_tutorial", package = "nebula")` or
 `?nebula`.
