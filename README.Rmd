@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# Nebula 
+# nebula 
 
 <!-- badges: start -->
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/changgee/Nebula?branch=master&svg=true)](https://ci.appveyor.com/project/changgee/Nebula)
@@ -28,15 +28,15 @@ Flexible sparsity parameters for multiple input data types allows for control ov
 
 ## Installation
 
-You can install the development version from [GitHub](https://github.com/) with:
+You can install the development version from [GitHub](https://github.com/nebula-group/nebula) with:
 
 ``` r
 # install.packages("remotes")
 
-remotes::install_github("changgee/Nebula", build_vignettes = TRUE)
+remotes::install_github("nebula-group/nebula", build_vignettes = TRUE)
 
-library(Nebula)
+library(nebula)
 ```
 
-Learn more in ` vignette("nebula_tutorial", package = "Nebula") ` or `?nebula`. 
+Learn more in ` vignette("nebula_tutorial", package = "nebula") ` or `?nebula`. 
 
