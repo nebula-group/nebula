@@ -1,7 +1,7 @@
 ---
 title: "Tutorial - Basic usage"
 author: "Margaret L. Hannum"
-date: "Last Updated: 9/23/2019"
+date: "Last Updated: 9/29/2020"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Tutorial: Basic usage}
@@ -26,14 +26,14 @@ This vignette will walk a reader through the `nebula()` function.
 Before going through the tutorial, install {Nebula}. 
 
 ```{r, include = FALSE}
-library(Nebula)
+library(nebula)
 
 ```
 
 ```{r, eval = FALSE}
-remotes::install_github("changgee/Nebula", build_vignettes = TRUE)
+remotes::install_github("nebula-group/nebula", build_vignettes = TRUE)
 
-library(Nebula)
+library(nebula)
 
 ```
 

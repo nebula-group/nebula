@@ -4,8 +4,24 @@
 \alias{NebulaCore}
 \title{NebulaCore}
 \usage{
-NebulaCore(X, type, E, H, eta, nu, alpha, lam, alpha_sigma, beta_sigma,
-  alpha_p, beta_p, mu0, sig0, pr0, binit = NULL)
+NebulaCore(
+  X,
+  type,
+  E,
+  H,
+  eta,
+  nu,
+  alpha,
+  lam,
+  alpha_sigma,
+  beta_sigma,
+  alpha_p,
+  beta_p,
+  mu0,
+  sig0,
+  pr0,
+  binit = NULL
+)
 }
 \arguments{
 \item{X}{n by p matrix where n is the sample size and p is the feature size}

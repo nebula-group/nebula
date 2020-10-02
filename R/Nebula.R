@@ -1,4 +1,4 @@
-#' Nebula
+#' nebula
 #'
 #' Network based latent dirichlet subtype analysis
 #' (ver. 20190920)
@@ -57,19 +57,20 @@ nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
   M <- length(data)
 
   if (length(modtype) != M) {
-    stop("invalid length of modtype")
+    stop("length of modtype needs to match number of matrices in input data")
   }
   if (length(modeta) != M) {
-    stop("invalid length of modeta")
+    stop("length of modeta needs to match number of matrices in input data")
   }
 
   p <- rep(0, M)
+  #checks for same number of samples
   for (m in 1:M)
   {
     if (m == 1) {
       n <- nrow(data[[1]])
     } else if (nrow(data[[m]]) != n) {
-      stop("different size of data matrices")
+      stop("data matrices need to have same number of samples (rows)")
     }
     p[m] <- ncol(data[[m]])
   }
