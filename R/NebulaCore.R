@@ -1,30 +1,29 @@
-#' DMMVI
+#' NebulaCore
 #'
-#' Variational Inference for Dirichlet Mixture Model
-#' (ver. 20191126)
+#' Network based latent dirichlet subtype analysis
+#' (ver. 20190920)
 #'
 #' @param X n by p matrix where n is the sample size and p is the feature size
 #' @param type p-dimensional vector of feature types. Currently supports continuous(=0) and binary(=1)
-#' @param A the adjacency matrix of the graph representing the graphical structure of X
+#' @param E e by 2 matrix of the graph edges representing the graphical structure of X
 #' @param H the number of clusters to be fit
-#' @param eta sparsity parameter for gamma's
+#' @param eta length p vector of sparsity parameters
 #' @param nu smoothness parameter for gamma's
 #' @param alpha concentration parameter for dirichlet process
-#' @param lam NEED DESCRIPTION
-#' @param mu0 mean of the non-selected continuous features
-#' @param sig0 variance of the non-selected continuous features
-#' @param pr0 "on" probability of the non-selected binary features
+#' @param lam shrinkage parameter for means of selected continuous features
 #' @param alpha_sigma shape parameter of the prior of residual variance(sigma^2)
 #' @param beta_sigma rate parameter of the prior of residual variance(sigma^2)
-#' @param alpha_p first shape parameter of the prior of the "on" probabilities(p_hj) of binary features
-#' @param beta_p second shape parameter of the prior of the "on" probabilities(p_hj) of binary features
+#' @param alpha_p first shape parameter of the prior of the 'active' probabilities(p_hj) of binary features
+#' @param beta_p second shape parameter of the prior of the 'active' probabilities(p_hj) of binary features
+#' @param mu0 mean of the non-selected continuous features
+#' @param sig0 variance of the non-selected continuous features
+#' @param pr0 'active' probability of the non-selected binary features
 #' @param binit n by H initial matrix of B, exp(B_ih) is proportional to Pr(z_i=h). If NULL (default), random numbers are filled in.
-#' @export
 #' @author Changgee Chang
 #' @examples
 #' # ADD EXAMPLE
-#
-DMMVI <- function(X,type,A,H,eta,nu,alpha,lam,mu0,sig0,pr0,alpha_sigma,beta_sigma,alpha_p,beta_p,binit=NULL)
+
+NebulaCore <- function(X,type,E,H,eta,nu,alpha,lam,alpha_sigma,beta_sigma,alpha_p,beta_p,mu0,sig0,pr0,binit=NULL)
 {
   n = nrow(X)
   p = ncol(X)
@@ -32,6 +31,13 @@ DMMVI <- function(X,type,A,H,eta,nu,alpha,lam,mu0,sig0,pr0,alpha_sigma,beta_sigm
   idx1 = which(type==1)
   p0 = length(idx0)
   p1 = length(idx1)
+
+  E = E[order(E[,1],E[,2]),]
+  e = nrow(E)
+  nadj = rep(0,p)
+  tmp = c(diff(E[,1])!=0,TRUE)
+  nadj[E[tmp,1]] = diff(c(0,which(tmp)))
+  Eidx = stats::diffinv(nadj)
 
   # Initialize
   if ( is.null(binit) )
@@ -101,18 +107,21 @@ DMMVI <- function(X,type,A,H,eta,nu,alpha,lam,mu0,sig0,pr0,alpha_sigma,beta_sigm
     for ( h in 1:H )
     {
       cbase[idx0,h] = - t(Elgau[,idx0,h]) %*% EI[,h]/2
-      cbase[idx0,h] = cbase[idx0,h] + t(lgau0) %*% EI[,h]/2
+      cbase[idx0,h] = cbase[idx0,h] + t(lgau0) %*% EI[,h]/2 - eta[idx0]
       cbase[idx1,h] = t(Elbin[,idx1,h]) %*% EI[,h]
-      cbase[idx1,h] = cbase[idx1,h] - t(lbin0) %*% EI[,h]
+      cbase[idx1,h] = cbase[idx1,h] - t(lbin0) %*% EI[,h] - eta[idx1]
     }
-    cbase = cbase - eta
 
+    Egam[nadj==0,] = 1/(1+exp(-cbase[nadj==0,]))
     while (TRUE)
     {
       pc = c
-      for ( j in 1:p )
+      for ( j in which(nadj!=0) )
       {
-        c[j,] = cbase[j,] + nu*A[j,]%*%(2*Egam-1)
+        if ( nadj[j] == 1 )
+          c[j,] = cbase[j,] + nu*(2*Egam[E[Eidx[j+1],2],]-1)
+        else
+          c[j,] = cbase[j,] + nu*apply(2*Egam[E[(Eidx[j]+1):Eidx[j+1],2],]-1,2,sum)
         Egam[j,] = 1/(1+exp(-c[j,]))
       }
       if ( max(abs(pc-c)) < 1e-4 )
@@ -138,6 +147,6 @@ DMMVI <- function(X,type,A,H,eta,nu,alpha,lam,mu0,sig0,pr0,alpha_sigma,beta_sigm
       break
   }
 
-  list(EI=EI,Egam=Egam,m=m,iter=iter)
+  list(EI=EI,Egam=Egam,m=m,lpr=Elp,iter=iter)
 }
 

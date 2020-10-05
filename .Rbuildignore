@@ -5,3 +5,8 @@
 ^\.travis\.yml$
 ^codecov\.yml$
 ^README\.Rmd$
+^doc$
+^Meta$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
