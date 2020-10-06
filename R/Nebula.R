@@ -54,6 +54,10 @@
 #'
 nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
                    beta_sigma = 1, alpha_p = 1, beta_p = 1, mu0 = 0, sig0 = 20, pr0 = 0.5, binit = NULL) {
+
+  #error checks
+  if(sum(is.na(data))>0) stop("Data cannot have NAs. Please exclude or impute missing values.")
+  if(missing(modtype)) stop("Must specify model type(s) for data. modtype supports continuous (=0) or binary (=1).")
   M <- length(data)
 
   if (length(modtype) != M) {

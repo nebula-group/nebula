@@ -1,6 +1,12 @@
 context("data input")
 
 #TODO add test for correct modtype input (0 or 1)
+#TODO add test for missing modtype, E, H, modeta, nu, alpha, lam
+#TODO missing data test
+#TODO test for binary data being of 2 types
+#TODO test for continuous input numeric
+
+set.seed(123)
 
 
 test_that("M modalities have same number of samples", {
