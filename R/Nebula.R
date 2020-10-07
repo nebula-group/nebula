@@ -30,6 +30,7 @@
 #' \item def_m list of M matrices; each matrix is p_m by H containing the mean of the variable j as a defining variable for the cluster h. (continuous variable only)
 #' \item def_lpr list of M matrices: each matrix is p_m by H containing the log probabilities of the variable j being 'active' and a defining variable for the cluster h. (binary variable only)
 #' \item iter the number of iterations until the algorithm converges.
+#' \item param A list of the input parameters used in the clustering solution.
 #' }
 #' @export
 #' @author Changgee Chang
@@ -55,9 +56,23 @@
 nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
                    beta_sigma = 1, alpha_p = 1, beta_p = 1, mu0 = 0, sig0 = 20, pr0 = 0.5, binit = NULL) {
 
-  #error checks
-  if(sum(is.na(data))>0) stop("Data cannot have NAs. Please exclude or impute missing values.")
-  if(missing(modtype)) stop("Must specify model type(s) for data. modtype supports continuous (=0) or binary (=1).")
+  #input checks
+  if(sum(!stats::complete.cases(data))>0)
+    stop("Data cannot have NAs. Please exclude or impute missing values.")
+  if(missing(modtype))
+    stop("Must specify model type(s) for data. modtype supports continuous (=0) or binary (=1).")
+  if(missing(modeta))
+    stop("Must specify modeta sparsity parameters for M modalities.")
+  if(missing(H))
+    stop("Must specify H for the number of clusters to be fit.")
+  if(missing(nu))
+    stop("Must specify nu for smoothness parameter for gammas.")
+  if(missing(alpha))
+    stop("Must specify alpha concentration parameter for dirichlet process.")
+  if(missing(lam))
+    stop("Must specify lam shrinkage parameter for selected continuous features.")
+
+
   M <- length(data)
 
   if (length(modtype) != M) {
@@ -74,7 +89,7 @@ nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
     if (m == 1) {
       n <- nrow(data[[1]])
     } else if (nrow(data[[m]]) != n) {
-      stop("data matrices need to have same number of samples (rows)")
+      stop("Input data matrices need to have same number of samples (rows)")
     }
     p[m] <- ncol(data[[m]])
   }
@@ -94,7 +109,7 @@ nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
     X[, (cump[m] + 1):cump[m + 1]] <- data[[m]]
     mod[(cump[m] + 1):cump[m + 1], m] <- TRUE
     if (modtype[m] != 0 & modtype[m] != 1) {
-      stop("invalid value for modality data type")
+      stop("modtype must be specified as 0 (continuous) or 1 (binary) for each modality")
     }
     type[(cump[m] + 1):cump[m + 1]] <- modtype[m]
     eta[(cump[m] + 1):cump[m + 1]] <- modeta[m]
@@ -120,6 +135,13 @@ nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
     def_lpr[[m]] <- matrix(out$lpr[mod[, m], ], ncol = H)
   }
 
+  param <- list(modtype = modtype, E = E, H = H, modeta = modeta, nu = nu,
+                alpha = alpha, lam = lam, alpha_sigma = alpha_sigma,
+                beta_sigma = beta_sigma,
+                alpha_p = alpha_p, beta_p = beta_p,
+                mu0 = mu0, sig0 = sig0, pr0 = pr0, binit = binit)
+
+
   #
   # Outputs
   #
@@ -130,5 +152,5 @@ nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
   # def_m: list of M matrices; each matrix is p_m by H containing the mean of the variable j as a defining variable for the cluster h. (continuous variable only)
   # def_lpr: list of M matrices: each matrix is p_m by H containing the log probabilities of the variable j being 'active' ad a defining variable for the cluster h. (binary variable only)
   # iter: the number of iterations until the algorithm converges.
-  list(clustering = apply(out$EI, 1, which.max), defvar = defvar, clus_pr = out$EI, defvar_pr = defvar_pr, def_m = def_m, def_lpr = def_lpr, iter = out$iter)
+  list(clustering = apply(out$EI, 1, which.max), defvar = defvar, clus_pr = out$EI, defvar_pr = defvar_pr, def_m = def_m, def_lpr = def_lpr, iter = out$iter, param = param)
 }

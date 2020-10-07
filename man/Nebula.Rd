@@ -67,6 +67,7 @@ posterior probabilities
 \item def_m list of M matrices; each matrix is p_m by H containing the mean of the variable j as a defining variable for the cluster h. (continuous variable only)
 \item def_lpr list of M matrices: each matrix is p_m by H containing the log probabilities of the variable j being 'active' and a defining variable for the cluster h. (binary variable only)
 \item iter the number of iterations until the algorithm converges.
+\item param A list of the input parameters used in the clustering solution.
 }
 }
 \description{
