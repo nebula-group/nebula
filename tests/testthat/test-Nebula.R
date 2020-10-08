@@ -279,5 +279,80 @@ test_that("lam input", {
   ))
 })
 
+test_that("pr0 input", {
+  # #should error if there are not correct input
+  expect_error(nebula(
+    data = data,
+    modtype = c(0, 1), #
+    E = colon$network,
+    H = 3,
+    modeta = c(0,1),
+    nu = 1,
+    alpha = 1,
+    lam = 1,
+    alpha_sigma = 10,
+    beta_sigma = 10,
+    alpha_p = 1,
+    beta_p = 1,
+    pr0 = -1
+  ))
+  # or missing
+  expect_error(nebula(
+    data = data,
+    modtype = c(0, 1), #
+    E = colon$network,
+    H = 3,
+    modeta = c(0, 1),
+    nu = 1, #missing
+    alpha = 1,
+    lam = 1,
+    alpha_sigma = 10,
+    beta_sigma = 10,
+    alpha_p = 1,
+    beta_p = 1,
+    pr0 = 2
+  ))
+})
+
+test_that("sig0 input", {
+  # #should error if there are not correct input
+  expect_error(nebula(
+    data = data,
+    modtype = c(0, 1), #
+    E = colon$network,
+    H = 3,
+    modeta = c(0,1),
+    nu = 1,
+    alpha = 1,
+    lam = 1,
+    alpha_sigma = 10,
+    beta_sigma = 10,
+    alpha_p = 1,
+    beta_p = 1,
+    sig0 = -1
+  ))
+})
+
+test_that("binit input", {
+  n_bad <- 99
+  H <- 3
+  binit_bad <- matrix(stats::rnorm(n_bad*H,0,0.01),n_bad,H)
+  # #should error if there are not correct input
+  expect_error(nebula(
+    data = data,
+    modtype = c(0, 1), #
+    E = colon$network,
+    H = 3,
+    modeta = c(0,1),
+    nu = 1,
+    alpha = 1,
+    lam = 1,
+    alpha_sigma = 10,
+    beta_sigma = 10,
+    alpha_p = 1,
+    beta_p = 1,
+    binit = binit_bad
+  ))
+})
 
 

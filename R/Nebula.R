@@ -71,6 +71,10 @@ nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
     stop("Must specify alpha concentration parameter for dirichlet process.")
   if(missing(lam))
     stop("Must specify lam shrinkage parameter for selected continuous features.")
+  if(pr0>1 | pr0 <0)
+    stop("pr0 must be a probability between 0 and 1.")
+  if(sig0 <0)
+    stop("sig0 must be a positive value to define variance of the non-selected continuous features.")
 
 
   M <- length(data)
@@ -95,6 +99,11 @@ nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
   }
   P <- sum(p)
   cump <- stats::diffinv(p)
+
+  #check that binit is correct dimension
+  if ( !is.null(binit) )
+    if(dim(binit)[1] != n | dim(binit)[2] != H)
+      stop("binit must be NULL or have dimensions n by H.")
 
   X <- matrix(0, n, P)
   mod <- matrix(FALSE, P, M) # modality
