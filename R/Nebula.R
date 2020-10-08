@@ -56,9 +56,7 @@
 nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
                    beta_sigma = 1, alpha_p = 1, beta_p = 1, mu0 = 0, sig0 = 20, pr0 = 0.5, binit = NULL) {
 
-  #input checks
-  if(sum(!stats::complete.cases(data))>0)
-    stop("Data cannot have NAs. Please exclude or impute missing values.")
+# check inputs for missing or incorrect
   if(missing(modtype))
     stop("Must specify model type(s) for data. modtype supports continuous (=0) or binary (=1).")
   if(missing(modeta))
@@ -75,7 +73,6 @@ nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
     stop("pr0 must be a probability between 0 and 1.")
   if(sig0 <0)
     stop("sig0 must be a positive value to define variance of the non-selected continuous features.")
-
 
   M <- length(data)
 
@@ -97,15 +94,21 @@ nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
     }
     p[m] <- ncol(data[[m]])
   }
-  P <- sum(p)
-  cump <- stats::diffinv(p)
+
+  #check for missing data
+  if(sum(!stats::complete.cases(data))>0)
+    stop("Data cannot have NAs. Please exclude or impute missing values.")
 
   #check that binit is correct dimension
   if ( !is.null(binit) )
     if(dim(binit)[1] != n | dim(binit)[2] != H)
       stop("binit must be NULL or have dimensions n by H.")
 
-  X <- matrix(0, n, P)
+
+  P <- sum(p) #sum of features across all modalities
+  cump <- stats::diffinv(p)
+
+  X <- matrix(0, n, P) #blank matrix of n samples by P total features
   mod <- matrix(FALSE, P, M) # modality
   type <- rep(0, P) # variable type
   if (ncol(E) != 4) {
@@ -115,6 +118,7 @@ nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
   eta <- rep(0, P) # sparsity parameter for each variable
   for (m in 1:M)
   {
+    #make single data matrix for input into core nebula formula
     X[, (cump[m] + 1):cump[m + 1]] <- data[[m]]
     mod[(cump[m] + 1):cump[m + 1], m] <- TRUE
     if (modtype[m] != 0 & modtype[m] != 1) {
@@ -126,32 +130,20 @@ nebula <- function(data, modtype, E, H, modeta, nu, alpha, lam, alpha_sigma = 1,
 
   out <- NebulaCore(X, type, E2, H, eta, nu, alpha, lam, alpha_sigma, beta_sigma, alpha_p, beta_p, mu0, sig0, pr0, binit)
 
-  defvar <- list()
-  defvar_pr <- list()
-  def_m <- list()
-  def_lpr <- list()
+  defvar <- defvar_pr <- def_m <- def_lpr <- list()
+
   for (m in 1:M)
   {
     defvar[[m]] <- matrix(out$Egam[mod[, m], ] > 0.5, ncol = H)
     defvar_pr[[m]] <- matrix(out$Egam[mod[, m], ], ncol = H)
-    if (modtype[m] != 0) {
-      out$m[mod[, m], ] <- NA
-    }
+    if (modtype[m] != 0) { out$m[mod[, m], ] <- NA}
     def_m[[m]] <- matrix(out$m[mod[, m], ], ncol = H)
-    if (modtype[m] != 1) {
-      out$lpr[mod[, m], ] <- NA
-    }
+    if (modtype[m] != 1) {out$lpr[mod[, m], ] <- NA}
     def_lpr[[m]] <- matrix(out$lpr[mod[, m], ], ncol = H)
   }
 
-  param <- list(modtype = modtype, E = E, H = H, modeta = modeta, nu = nu,
-                alpha = alpha, lam = lam, alpha_sigma = alpha_sigma,
-                beta_sigma = beta_sigma,
-                alpha_p = alpha_p, beta_p = beta_p,
-                mu0 = mu0, sig0 = sig0, pr0 = pr0, binit = binit)
+  param <- list(modtype = modtype, E = E, H = H, modeta = modeta, nu = nu, alpha = alpha, lam = lam, alpha_sigma = alpha_sigma, beta_sigma = beta_sigma, alpha_p = alpha_p, beta_p = beta_p, mu0 = mu0, sig0 = sig0, pr0 = pr0, binit = binit)
 
-
-  #
   # Outputs
   #
   # clustering: cluster assignment

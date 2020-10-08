@@ -2,6 +2,7 @@ context("data and parameter inputs")
 
 #TODO test for binary data being of 2 types
 #TODO test for continuous input numeric
+#TODO test for E input - four columns and appropriate entries
 
 set.seed(123)
 
@@ -355,4 +356,22 @@ test_that("binit input", {
   ))
 })
 
+test_that("E input", {
+  e_bad <- colon$network[,1:3]
+  # #should error if there are not correct input
+  expect_error(nebula(
+    data = data,
+    modtype = c(0, 1), #
+    E = e_bad,
+    H = 3,
+    modeta = c(0,1),
+    nu = 1,
+    alpha = 1,
+    lam = 1,
+    alpha_sigma = 10,
+    beta_sigma = 10,
+    alpha_p = 1,
+    beta_p = 1
+  ))
+})
 
