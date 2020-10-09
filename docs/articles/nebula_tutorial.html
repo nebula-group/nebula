@@ -6,19 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tutorial - Basic usage • nebula</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial - Basic usage">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="nebula">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nebula</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
       </span>
     </div>
 
@@ -56,9 +56,6 @@
 <li>
       <a href="../articles/nebula_tutorial.html">Tutorial - Basic usage</a>
     </li>
-    <li>
-      <a href="../articles/tuning_sparsity.html">Tuning the sparsity parameter</a>
-    </li>
   </ul>
 </li>
 <li>
@@ -67,7 +64,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/nebula-group/nebula">
+  <a href="https://github.com/nebula-group/nebula/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -82,13 +79,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="nebula_tutorial_files/header-attrs-2.4/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Tutorial - Basic usage</h1>
+      <h1 data-toc-skip>Tutorial - Basic usage</h1>
                         <h4 class="author">Margaret L. Hannum</h4>
             
-            <h4 class="date">Last Updated: 9/23/2019</h4>
+            <h4 class="date">Last Updated: 9/29/2020</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/nebula-group/nebula/blob/master/vignettes/nebula_tutorial.Rmd"><code>vignettes/nebula_tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>nebula_tutorial.Rmd</code></div>
@@ -100,90 +97,96 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>This vignette will walk a reader through the <code>nebula()</code> function.</p>
+<p>This vignette will walk a reader through the <code><a href="../reference/nebula.html">nebula()</a></code> function.</p>
 </div>
 <div id="setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h2>
 <p>Before going through the tutorial, install {Nebula}.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">"changgee/Nebula"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(Nebula)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"nebula-group/nebula"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nebula-group/nebula">nebula</a></span><span class="op">)</span></pre></div>
 </div>
 <div id="basic-usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-usage" class="anchor"></a>Basic Usage</h2>
 <p>We’ll be using the <code>colon</code> data set throughout this example. This set contains data from <code><a href="https://rdrr.io/r/base/nrow.html">nrow(colon$modal$gene_expr)</a></code> patients with colon adenocarcinoma (COAD) from the TCGA with available mRNA gene expression and DNA alteration data.</p>
 <p>In this dataset there are 1239 gene expression features and 187 DNA alteration features (encompassing copy number alteration, DNA mutation, and DNA methylation data).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(colon<span class="op">$</span>modal<span class="op">$</span>gene_expr[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt;                     12          13         26         33         55</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; TCGA-3L-AA1B -2.423038 -0.06077479  4.6400521 -2.8386386  0.4246023</span></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; TCGA-4N-A93T -3.210290 -0.82757599  5.0946978 -1.9419793 -0.6309671</span></a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt; TCGA-4T-AA8H -2.895921 -1.90435159  4.6929238 -2.8386386  1.4881064</span></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt; TCGA-5M-AAT4 -3.970366 -1.07540683  4.0248334 -2.4807544  0.4058703</span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt; TCGA-5M-AAT6 -1.651016  1.94444404 -0.5901572  0.3651033 -1.6379581</span></a>
-<a class="sourceLine" id="cb2-9" title="9"></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(colon<span class="op">$</span>modal<span class="op">$</span>dna_alt[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])</a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt;              25 91 92 207 208</span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt; TCGA-3L-AA1B  0  0  0   0   0</span></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt; TCGA-4N-A93T  0  0  0   0   0</span></a>
-<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt; TCGA-4T-AA8H  0  0  0   0   0</span></a>
-<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt; TCGA-5M-AAT4  0  0  0   0   0</span></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt; TCGA-5M-AAT6  0  0  0   0   0</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">colon</span><span class="op">$</span><span class="va">modal</span><span class="op">$</span><span class="va">gene_expr</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
+<span class="co">#&gt;                     12          13         26         33         55</span>
+<span class="co">#&gt; TCGA-3L-AA1B -2.423038 -0.06077479  4.6400521 -2.8386386  0.4246023</span>
+<span class="co">#&gt; TCGA-4N-A93T -3.210290 -0.82757599  5.0946978 -1.9419793 -0.6309671</span>
+<span class="co">#&gt; TCGA-4T-AA8H -2.895921 -1.90435159  4.6929238 -2.8386386  1.4881064</span>
+<span class="co">#&gt; TCGA-5M-AAT4 -3.970366 -1.07540683  4.0248334 -2.4807544  0.4058703</span>
+<span class="co">#&gt; TCGA-5M-AAT6 -1.651016  1.94444404 -0.5901572  0.3651033 -1.6379581</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">colon</span><span class="op">$</span><span class="va">modal</span><span class="op">$</span><span class="va">dna_alt</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
+<span class="co">#&gt;              25 91 92 207 208</span>
+<span class="co">#&gt; TCGA-3L-AA1B  0  0  0   0   0</span>
+<span class="co">#&gt; TCGA-4N-A93T  0  0  0   0   0</span>
+<span class="co">#&gt; TCGA-4T-AA8H  0  0  0   0   0</span>
+<span class="co">#&gt; TCGA-5M-AAT4  0  0  0   0   0</span>
+<span class="co">#&gt; TCGA-5M-AAT6  0  0  0   0   0</span></pre></div>
 <p>We also include network information in the <code>colon</code> dataset, which indicates network edges both within and between modalities.</p>
 <p>For example, below we can see the 10th gene in the first modality has a network connection to the 8th gene in the first modality.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(colon<span class="op">$</span>network)</a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt;      mode1 gene1 mode2 gene2</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt; [1,]     1    10     1     8</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt; [2,]     1    23     1     8</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; [3,]     1    30     1     8</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; [4,]     1    46     1     8</span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; [5,]     1    47     1     8</span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt; [6,]     1    48     1     8</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">colon</span><span class="op">$</span><span class="va">network</span><span class="op">)</span>
+<span class="co">#&gt;      mode1 gene1 mode2 gene2</span>
+<span class="co">#&gt; [1,]     1    10     1     8</span>
+<span class="co">#&gt; [2,]     1    23     1     8</span>
+<span class="co">#&gt; [3,]     1    30     1     8</span>
+<span class="co">#&gt; [4,]     1    46     1     8</span>
+<span class="co">#&gt; [5,]     1    47     1     8</span>
+<span class="co">#&gt; [6,]     1    48     1     8</span></pre></div>
 <p>Now perform network-driven subtype discovery on the example colon data.</p>
 <p><em>We recommend setting a seed for reproducible results, since there is a stochastic nature to the Bayesian subtype assignments.</em></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># set seed for reproducibility</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb4-3" title="3"></a>
-<a class="sourceLine" id="cb4-4" title="4">t1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span>()</a>
-<a class="sourceLine" id="cb4-5" title="5">res &lt;-<span class="st"> </span><span class="kw">nebula</span>(</a>
-<a class="sourceLine" id="cb4-6" title="6">  <span class="dt">data =</span> colon<span class="op">$</span>modal, </a>
-<a class="sourceLine" id="cb4-7" title="7">  <span class="dt">modtype =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">1</span>), </a>
-<a class="sourceLine" id="cb4-8" title="8">  <span class="dt">E =</span> colon<span class="op">$</span>network,</a>
-<a class="sourceLine" id="cb4-9" title="9">  <span class="dt">H =</span> <span class="dv">3</span>, </a>
-<a class="sourceLine" id="cb4-10" title="10">  <span class="dt">modeta =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="fl">0.2</span>),</a>
-<a class="sourceLine" id="cb4-11" title="11">  <span class="dt">nu =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb4-12" title="12">  <span class="dt">alpha =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb4-13" title="13">  <span class="dt">lam =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb4-14" title="14">  <span class="dt">alpha_sigma =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb4-15" title="15">  <span class="dt">beta_sigma =</span> <span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb4-16" title="16">  <span class="dt">alpha_p =</span> <span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb4-17" title="17">  <span class="dt">beta_p =</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb4-18" title="18">)</a>
-<a class="sourceLine" id="cb4-19" title="19">t2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span>()</a>
-<a class="sourceLine" id="cb4-20" title="20"></a>
-<a class="sourceLine" id="cb4-21" title="21">t2<span class="op">-</span>t1</a>
-<a class="sourceLine" id="cb4-22" title="22"><span class="co">#&gt; Time difference of 8.070419 secs</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co"># set seed for reproducibility</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/nebula.html">nebula</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="va">colon</span><span class="op">$</span><span class="va">modal</span>, 
+  modtype <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, 
+  E <span class="op">=</span> <span class="va">colon</span><span class="op">$</span><span class="va">network</span>,
+  H <span class="op">=</span> <span class="fl">3</span>, 
+  modeta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.2</span><span class="op">)</span>,
+  nu <span class="op">=</span> <span class="fl">1</span>,
+  alpha <span class="op">=</span> <span class="fl">1</span>,
+  lam <span class="op">=</span> <span class="fl">1</span>, 
+  alpha_sigma <span class="op">=</span> <span class="fl">10</span>,
+  beta_sigma <span class="op">=</span> <span class="fl">10</span>,
+  alpha_p <span class="op">=</span> <span class="fl">1</span>, 
+  beta_p <span class="op">=</span> <span class="fl">1</span>
+<span class="op">)</span>
+<span class="va">t2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">t2</span><span class="op">-</span><span class="va">t1</span>
+<span class="co">#&gt; Time difference of 12.99246 secs</span></pre></div>
 <p>Now we can examine the output.</p>
 <p>There are subtype assignments for all samples:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(res<span class="op">$</span>clustering)</a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="co">#&gt; [1] 1 3 3 3 2 3</span></a>
-<a class="sourceLine" id="cb5-3" title="3"></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(res<span class="op">$</span>clustering))</a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt;   1   2   3 </span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt;  94  29 216</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">clustering</span><span class="op">)</span>
+<span class="co">#&gt; [1] 1 3 3 3 2 3</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">clustering</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt;   1   2   3 </span>
+<span class="co">#&gt;  94  29 216</span></pre></div>
 <p>You may also access probabilities that each sample is assigned to each subtype. Above, we saw the first sample was assigned to subtype “1”. Below, we see that the probability of the first sample sample being assigned to subtype “1” was close to one (after rounding).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(res<span class="op">$</span>clus_pr), <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt;      [,1] [,2] [,3]</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; [1,]    1    0    0</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; [2,]    0    0    1</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; [3,]    0    0    1</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; [4,]    0    0    1</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; [5,]    0    1    0</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; [6,]    0    0    1</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+
+<span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">clus_pr</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>
+<span class="co">#&gt;      [,1] [,2] [,3]</span>
+<span class="co">#&gt; [1,]    1    0    0</span>
+<span class="co">#&gt; [2,]    0    0    1</span>
+<span class="co">#&gt; [3,]    0    0    1</span>
+<span class="co">#&gt; [4,]    0    0    1</span>
+<span class="co">#&gt; [5,]    0    1    0</span>
+<span class="co">#&gt; [6,]    0    0    1</span></pre></div>
 <p>Finally, you may also access feature selection information in the output. For each feature in each mode, there is a TRUE/FALSE value for whether the feature is a defining variable in each cluster (in the <code>res$defvar</code> element), as well as the probability of that feature being a defining variable for the cluster (<code>res$defvar_pr</code>)</p>
 <!-- ```{r} -->
 <!-- set.seed(1234) -->
@@ -210,18 +213,11 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#introduction">Introduction</a></li>
-      <li><a href="#setup">Setup</a></li>
-      <li><a href="#basic-usage">Basic Usage</a></li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
@@ -232,7 +228,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -1,6 +1,6 @@
 Package: nebula
 Title: Network-based latent-Dirichlet subtype analysis (Nebula)
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     c(person(given = "Changgee",
            family = "Chang",
@@ -32,11 +32,12 @@ Suggests:
     covr (>= 3.2.1),
     knitr (>= 1.23),
     rmarkdown (>= 1.13),
-    spelling (>= 2.1)
+    spelling (>= 2.1),
+    testthat
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
