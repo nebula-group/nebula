@@ -6,13 +6,13 @@ nebula
 
 <!-- badges: start -->
 
+[![Lifecycle:
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+<!-- [![CRAN status](https://www.r-pkg.org/badges/version/nebula)](https://CRAN.R-project.org/package=nebula) -->
 [![Codecov test
-coverage](https://codecov.io/gh/margarethannum/nebula/branch/master/graph/badge.svg)](https://codecov.io/gh/margarethannum/nebula?branch=master)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/margarethannum/nebula?branch=master&svg=true)](https://ci.appveyor.com/project/margarethannum/nebula)
-[![Travis build
-status](https://travis-ci.com/margarethannum/nebula.svg?branch=master)](https://travis-ci.com/margarethannum/nebula)
-
+coverage](https://codecov.io/gh/nebula-group/nebula/branch/master/graph/badge.svg)](https://codecov.io/gh/nebula-group/nebula?branch=master)
+[![R build
+status](https://github.com/nebula-group/nebula/workflows/R-CMD-check/badge.svg)](https://github.com/nebula-group/nebula/actions)
 <!-- badges: end -->
 
 The Nebula package implements Network-based latent-Dirichlet subtype
