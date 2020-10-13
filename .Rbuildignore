@@ -11,3 +11,5 @@
 ^docs$
 ^pkgdown$
 ^\.github$
+^\.ccache$
+^tic\.R$
