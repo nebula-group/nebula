@@ -5,9 +5,9 @@
 \alias{nebula-package}
 \alias{_PACKAGE}
 \alias{Nebula-package}
-\title{nebula: Network-based latent-Dirichlet subtype analysis (Nebula)}
+\title{nebula: Network-Based Latent-Dirichlet Subtype Analysis}
 \description{
-Functions implementing the Network-based latent-Dirichlet subtype analysis (Nebula) algorithm for variational inference using Dirichlet mixture model with incorporation of graphical knowledge. Practically, this can be used to incorporate biological networks/pathways to inform clustering solutions.
+Functions implementing the Network-based latent-Dirichlet subtype analysis (nebula) algorithm for variational inference using Dirichlet mixture model with incorporation of graphical knowledge. Practically, this can be used to incorporate biological networks/pathways to inform clustering solutions.
 }
 \seealso{
 Useful links:
@@ -18,7 +18,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Margaret Hannum \email{hannumm@mskcc.org}
+\strong{Maintainer}: Margaret Hannum \email{margie.hannum@gmail.com}
 
 Authors:
 \itemize{
